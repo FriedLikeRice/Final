@@ -1,6 +1,7 @@
 const express = require('express');
 const mongoose = require('mongoose');
 const flashcardRoutes = require('./routes/flashcards');
+const cardSetRoutes = require('./routes/cardSets');
 require('dotenv').config();
 
 const app = express();
@@ -11,6 +12,7 @@ app.use(express.json());
 
 // Routes
 app.use('/api/flashcards', flashcardRoutes);
+app.use('/api/cardsets', cardSetRoutes);
 
 // MongoDB connection
 mongoose.connect(process.env.MONGODB_URI, {
