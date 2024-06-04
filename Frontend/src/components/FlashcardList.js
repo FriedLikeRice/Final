@@ -1,30 +1,32 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
+import { useQuery } from 'react-query';
+import axios from 'axios';
 
-function FlashcardList() {
-  const [flashcards, setFlashcards] = useState([]);
+const fetchFlashcards = async () => {
+  const { data } = await axios.get('/api/flashcards', {
+    headers: {
+      Authorization: `Bearer ${localStorage.getItem('token')}`
+    }
+  });
+  return data;
+};
 
-  useEffect(() => {
-    fetch('/api/flashcards')
-      .then(response => response.json())
-      .then(data => setFlashcards(data))
-      .catch(error => console.error('Error fetching flashcards:', error));
-  }, []);
+const FlashcardList = () => {
+  const { data, error, isLoading } = useQuery('flashcards', fetchFlashcards);
+
+  if (isLoading) return <div>Loading...</div>;
+  if (error) return <div>Error fetching flashcards</div>;
 
   return (
     <div>
       <h2>Flashcards</h2>
       <ul>
-        {flashcards.map(flashcard => (
-          <li key={flashcard._id}>
-            <p>Front: {flashcard.front}</p>
-            <p>Back: {flashcard.back}</p>
-            <p>Category: {flashcard.category}</p>
-            <p>Difficulty: {flashcard.difficulty}</p>
-          </li>
+        {data.map((flashcard) => (
+          <li key={flashcard._id}>{flashcard.front}</li>
         ))}
       </ul>
     </div>
   );
-}
+};
 
 export default FlashcardList;

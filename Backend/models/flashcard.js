@@ -1,8 +1,6 @@
 const mongoose = require('mongoose');
 
-const Schema = mongoose.Schema;
-
-const FlashcardSchema = new Schema({
+const FlashcardSchema = new mongoose.Schema({
   front: {
     type: String,
     required: true
@@ -17,12 +15,7 @@ const FlashcardSchema = new Schema({
   },
   difficulty: {
     type: String,
-    enum: ['easy', 'medium', 'hard'],
     required: true
-  },
-  createdAt: {
-    type: Date,
-    default: Date.now
   }
 });
 
