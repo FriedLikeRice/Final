@@ -1,36 +1,36 @@
 import React, { useState } from 'react';
+import { useMutation, useQueryClient } from 'react-query';
+import axios from 'axios';
 
-function CreateCardSet() {
+const createCardSet = async (newCardSet) => {
+  const { data } = await axios.post('/api/cardsets', newCardSet, {
+    headers: {
+      Authorization: `Bearer ${localStorage.getItem('token')}`
+    }
+  });
+  return data;
+};
+
+const CreateCardSet = () => {
   const [name, setName] = useState('');
   const [description, setDescription] = useState('');
+  const queryClient = useQueryClient();
 
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-    const newCardSet = { name, description };
-    
-    try {
-      const response = await fetch('/api/cardsets', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json'
-        },
-        body: JSON.stringify(newCardSet)
-      });
-      if (response.ok) {
-        const result = await response.json();
-        console.log('Created new card set:', result);
-      } else {
-        console.error('Failed to create card set');
-      }
-    } catch (error) {
-      console.error('Error:', error);
+  const mutation = useMutation(createCardSet, {
+    onSuccess: () => {
+      queryClient.invalidateQueries('cardSets');
     }
+  });
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    mutation.mutate({ name, description });
   };
 
   return (
     <form onSubmit={handleSubmit}>
       <div>
-        <label>Set Name:</label>
+        <label>Name:</label>
         <input
           type="text"
           value={name}
@@ -44,11 +44,12 @@ function CreateCardSet() {
           type="text"
           value={description}
           onChange={(e) => setDescription(e.target.value)}
+          required
         />
       </div>
       <button type="submit">Create Card Set</button>
     </form>
   );
-}
+};
 
 export default CreateCardSet;

@@ -1,22 +1,22 @@
 const mongoose = require('mongoose');
 
-const Schema = mongoose.Schema;
-
-const CardSetSchema = new Schema({
+const CardSetSchema = new mongoose.Schema({
   name: {
     type: String,
     required: true
   },
   description: {
-    type: String
+    type: String,
+    required: true
   },
   flashcards: [{
     type: mongoose.Schema.Types.ObjectId,
     ref: 'Flashcard'
   }],
-  createdAt: {
-    type: Date,
-    default: Date.now
+  user: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: 'User',
+    required: true
   }
 });
 

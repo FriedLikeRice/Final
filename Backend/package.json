@@ -1,14 +1,21 @@
 {
   "name": "mern-flashcard-app-backend",
   "version": "1.0.0",
-  "description": "Backend for a MERN stack flashcard app",
+  "description": "Backend for MERN stack flashcard app",
   "main": "app.js",
   "scripts": {
-    "start": "node app.js"
+    "start": "nodemon app.js",
+    "server": "nodemon app.js"
   },
   "dependencies": {
-    "dotenv": "^16.0.0",
+    "bcryptjs": "^2.4.3",
+    "dotenv": "^10.0.0",
     "express": "^4.17.1",
-    "mongoose": "^5.12.3"
+    "jsonwebtoken": "^8.5.1",
+    "mern-flashcard-app": "file:..",
+    "mongoose": "^5.13.3"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.12"
   }
 }
