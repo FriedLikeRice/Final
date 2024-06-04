@@ -1,6 +1,6 @@
 const express = require('express');
 const router = express.Router();
-const Flashcard = require('../models/flashcard');
+const Flashcard = require('../models/Flashcard');
 
 // Create a new flashcard
 router.post('/', async (req, res) => {
