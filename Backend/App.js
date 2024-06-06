@@ -11,6 +11,7 @@ const PORT = process.env.PORT || 3005;
 
 // Middleware
 app.use(express.json());
+app.use(cors());
 
 // Routes
 app.use('/api/flashcards', flashcardRoutes);
