@@ -1,7 +1,7 @@
 import React, { useContext } from 'react';
 import { Navigate, Outlet } from 'react-router-dom';
 import { AuthContext } from '../context/AuthContext';
-import Navbar from './Navbar';
+// import Navbar from './Navbar';
 
 const PrivateRoute = () => {
   const { user } = useContext(AuthContext);
@@ -9,7 +9,7 @@ const PrivateRoute = () => {
   if (!user) {
     return (
       <>
-        <Navbar />
+        {/* <Navbar /> */}
         <Navigate to="/register" replace />
       </>
     );

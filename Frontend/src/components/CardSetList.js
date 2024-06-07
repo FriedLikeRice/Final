@@ -1,5 +1,5 @@
 import React from 'react';
-import { useQuery } from 'react-query';
+import { useQuery } from 'react-query'; // Import QueryClientProvider and QueryClient
 import axios from 'axios';
 
 const fetchCardSets = async () => {

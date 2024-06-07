@@ -1,21 +1,20 @@
 import React from 'react';
-import FlashcardList from './FlashcardList';
+import { QueryClient, QueryClientProvider } from 'react-query'; // Import QueryClientProvider
 import CardSetList from './CardSetList';
+import FlashcardList from './FlashcardList';
 import CreateCardSet from './CreateCardSet';
-import PrivateRoute from './PrivateRoute';
-import Login from './Login';
-import Register from './Register';
 
 const Home = () => {
+    const queryClient = new QueryClient(); // Create a QueryClient instance
+
     return (
-        <div>
-            <h1>Welcome to the Home Page!</h1>
-            {<PrivateRoute component={Register} />}
-            {<PrivateRoute component={Login} />}
-            {<PrivateRoute component={FlashcardList} />}
-            {<PrivateRoute component={CardSetList} />}
-            {<PrivateRoute component={CreateCardSet} />}
-        </div>
+        <QueryClientProvider client={queryClient}> {/* Wrap the component tree with QueryClientProvider */}
+            <div>
+                <CardSetList />
+                <FlashcardList />
+                <CreateCardSet />
+            </div>
+        </QueryClientProvider>
     );
 };
 
