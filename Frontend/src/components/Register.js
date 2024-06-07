@@ -1,16 +1,17 @@
-// src/components/Register.js
-import React, { useState, useContext } from 'react';
-import { AuthContext } from '../context/AuthContext';
+import React, { useState } from 'react';
+import axios from 'axios';
+import { useHistory } from 'react-router-dom';
 
 const Register = () => {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
-  const { register } = useContext(AuthContext);
+  const history = useHistory();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      await register(username, password);
+      await axios.post('/api/users/register', { username, password });
+      history.push('/login');
     } catch (error) {
       console.error('Registration failed:', error);
     }
