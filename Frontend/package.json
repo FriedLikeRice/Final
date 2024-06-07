@@ -10,7 +10,9 @@
     "eject": "react-scripts eject"
   },
   "dependencies": {
+    "@tanstack/react-query": "^5.40.1",
     "axios": "^0.21.1",
+    "bootstrap": "^5.3.3",
     "cross-env": "^7.0.3",
     "mern-flashcard-app": "file:..",
     "react": "^18.3.1",

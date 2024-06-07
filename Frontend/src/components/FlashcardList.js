@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { useQuery, useMutation, useQueryClient } from 'react-query';
+import { useQuery, useMutation, useQueryClient, QueryClient, QueryClientProvider } from 'react-query';
 import axios from 'axios';
 
 const fetchCardSets = async () => {
@@ -113,9 +113,9 @@ const Dashboard = () => {
     mutation.mutate(newCardSet);
   };
 
-  if (cardSetsLoading || flashcardsLoading) return <div>Loading...</div>;
-  if (cardSetsError) return <div>Error fetching card sets</div>;
-  if (flashcardsError) return <div>Error fetching flashcards</div>;
+  if (cardSetsLoading || flashcardsLoading) return;
+  if (cardSetsError) return;
+  if (flashcardsError) return;
 
   return (
     <div>
@@ -126,4 +126,12 @@ const Dashboard = () => {
   );
 };
 
-export default Dashboard;
+const queryClient = new QueryClient(); // Create a QueryClient instance
+
+const App = () => (
+  <QueryClientProvider client={queryClient}> {/* Wrap the component tree with QueryClientProvider */}
+    <Dashboard />
+  </QueryClientProvider>
+);
+
+export default App;
