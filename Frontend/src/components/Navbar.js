@@ -4,10 +4,10 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 
 const Navbar = () => {
-    const queryClient = new QueryClient(); // Create a QueryClient instance
+    const queryClient = new QueryClient();
 
     return (
-        <QueryClientProvider client={queryClient}> {/* Wrap the component with QueryClientProvider */}
+        <QueryClientProvider client={queryClient}> {}
             <nav className="navbar navbar-expand-lg navbar-dark bg-dark">
                 <div className="container-fluid">
                     <Link className="navbar-brand" to="/">Flashcard App</Link>

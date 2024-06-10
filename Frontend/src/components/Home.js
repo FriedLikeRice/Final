@@ -5,10 +5,10 @@ import FlashcardList from './FlashcardList';
 import CreateCardSet from './CreateCardSet';
 
 const Home = () => {
-    const queryClient = new QueryClient(); // Create a QueryClient instance
+    const queryClient = new QueryClient(); 
 
     return (
-        <QueryClientProvider client={queryClient}> {/* Wrap the component tree with QueryClientProvider */}
+        <QueryClientProvider client={queryClient}> 
             <div>
                 <CardSetList />
                 <FlashcardList />

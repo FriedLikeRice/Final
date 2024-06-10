@@ -1,18 +1,29 @@
-import React from 'react';
-import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
-import { AuthProvider } from './context/AuthContext';
-import LoginPage from './components/LoginPage';
-import RegisterPage from './components/RegisterPage';
-import CardSets from './components/CardSetList';
-const App = () => {
+
+import 'bootstrap/dist/css/bootstrap.min.css';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import Navbar from './components/Navbar';
+import Home from './components/Home';
+import Login from './components/Login';
+import Register from './components/Register';
+import { QueryClient, QueryClientProvider } from '@tanstack/react-query'; // Import QueryClient and QueryClientProvider
+
+function App() {
+  const queryClient = new QueryClient(); // Create a QueryClient instance
+
   return (
     <AuthProvider>
       <Router>
-        <Switch>
-          <Route path="/login" component={LoginPage} />
-          <Route path="/register" component={RegisterPage} />
-          <Route path="/cards" component={CardSets} />
-        </Switch>
+        <div>
+          <Navbar />
+
+          <div className="App">
+            <Routes>
+              <Route path="/login" element={<Login />} />
+              <Route path="/register" element={<Register />} />
+              <Route path="/" element={<Home />} />
+            </Routes>
+          </div>
+        </div>
       </Router>
     </AuthProvider>
   );
