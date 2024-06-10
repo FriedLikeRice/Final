@@ -1,34 +1,26 @@
 const express = require('express');
 const mongoose = require('mongoose');
-const flashcardRoutes = require('./routes/flashcards');
-const cardSetRoutes = require('./routes/cardSets');
-const authRoutes = require('./routes/auth');
+const userRoutes = require('./routes/userRoutes');
+const bodyParser = require('body-parser');
 const cors = require('cors');
-require('dotenv').config();
 
 const app = express();
-const PORT = process.env.PORT || 3005;
+const PORT = process.env.PORT || 3001;
 
-// Middleware
-app.use(express.json());
 app.use(cors());
+app.use(bodyParser.json());
 
-// Routes
-app.use('/api/flashcards', flashcardRoutes);
-app.use('/api/cardsets', cardSetRoutes);
-app.use('/api/auth', authRoutes);
-
-const MONGODB_URI = 'mongodb+srv://Nimo_moha:Hooyomcn2@cluster0.mn3ocrd.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0';
-
-// MongoDB connection
-mongoose.connect(MONGODB_URI, {
+mongoose.connect('mongodb://localhost:27017/flashcardapp', {
   useNewUrlParser: true,
-  useUnifiedTopology: true
+  useUnifiedTopology: true,
+  useCreateIndex: true
 }).then(() => {
   console.log('Connected to MongoDB');
 }).catch((error) => {
   console.error('Error connecting to MongoDB:', error);
 });
+
+app.use('/api/users', userRoutes);
 
 app.listen(PORT, () => {
   console.log(`Server is running on port ${PORT}`);

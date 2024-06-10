@@ -1,4 +1,4 @@
-import React from 'react';
+
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import Navbar from './components/Navbar';
@@ -11,21 +11,22 @@ function App() {
   const queryClient = new QueryClient(); // Create a QueryClient instance
 
   return (
-    <QueryClientProvider client={queryClient}> {/* Wrap the entire component tree with QueryClientProvider */}
+    <AuthProvider>
       <Router>
         <div>
           <Navbar />
-          <Home />
+
           <div className="App">
             <Routes>
               <Route path="/login" element={<Login />} />
               <Route path="/register" element={<Register />} />
+              <Route path="/" element={<Home />} />
             </Routes>
           </div>
         </div>
       </Router>
-    </QueryClientProvider>
+    </AuthProvider>
   );
-}
+};
 
 export default App;

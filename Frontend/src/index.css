@@ -4,7 +4,7 @@
   box-sizing: border-box;
 }
 
-/* Set a base font size and family for the application */
+
 body {
   font-family: 'Arial', sans-serif;
   font-size: 16px;
@@ -13,22 +13,135 @@ body {
   line-height: 1.6;
 }
 
-.navbar {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  background-color: #333;
-  padding: 1rem;
-  color: #fff;
-}
-
-.navbar-logo a {
-  color: #fff;
-  text-decoration: none;
+.navbar-brand {
   font-size: 1.5rem;
 }
 
-.navbar-links {
-  list-style: none;
+.nav-link {
+  color: #fff;
+}
+
+.nav-link:hover {
+  color: #ffc107;
+}
+
+.register-container {
   display: flex;
+  justify-content: center;
+  /* align-items: center; */
+  height: 50%;
+  padding: 20px;
+}
+
+.register-form {
+  width: 800px;
+  padding: 20px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  background-color: #f9f9f9;
+}
+
+.form-group {
+  margin-bottom: 20px;
+}
+
+label {
+  font-weight: bold;
+}
+
+.input {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 3px;
+}
+
+.btn-primary {
+  display: block;
+  width: 20%;
+  padding: 10px;
+  background-color: #007bff;
+  color: #fff;
+  border: none;
+  border-radius: 3px;
+  cursor: pointer;
+}
+
+.btn-primary:hover {
+  background-color: #0056b3;
+}
+
+.login-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 20px;
+  height: 50%;
+}
+
+.login-form {
+  width: 800px;
+  padding: 20px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  background-color: #f9f9f9;
+}
+
+.form-group {
+  margin-bottom: 20px;
+}
+
+label {
+  font-weight: bold;
+}
+
+.input {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 3px;
+}
+
+.btn-primary {
+  display: block;
+  width: 20%;
+  padding: 10px;
+  background-color: #6f8398;
+  color: #fff;
+  border: none;
+  border-radius: 3px;
+  cursor: pointer;
+}
+
+.btn-primary:hover {
+  background-color: #0056b3;
+}
+
+.home-container {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+.home-heading {
+  text-align: center;
+  font-size: 2rem;
+  margin-bottom: 20px;
+}
+
+.home-content {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 20px;
+}
+
+.home-section {
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  padding: 20px;
+}
+
+.home-section-heading {
+  font-size: 1.5rem;
+  margin-bottom: 10px;
 }
