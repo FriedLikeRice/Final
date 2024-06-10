@@ -1,8 +1,9 @@
 import React, { useState, useContext } from 'react';
 import { AuthContext } from '../context/AuthContext';
-// Import custom CSS for Register styling
+
 
 const Register = () => {
+  const [name, setName] = useState('');
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
   const { register } = useContext(AuthContext);
@@ -10,7 +11,7 @@ const Register = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      await register(username, password);
+      await register(name, username, password);
     } catch (error) {
       console.error('Registration failed:', error);
     }
@@ -24,8 +25,8 @@ const Register = () => {
           <label>Name:</label>
           <input
             type="text"
-            value={username}
-            onChange={(e) => setUsername(e.target.value)}
+            value={name}
+            onChange={(e) => setName(e.target.value)}
             required
             className="form-control"
           />
