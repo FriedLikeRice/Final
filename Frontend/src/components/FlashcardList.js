@@ -3,7 +3,7 @@ import { useQuery, useMutation, useQueryClient, QueryClient, QueryClientProvider
 import axios from 'axios';
 
 const fetchCardSets = async () => {
-  const { data } = await axios.get('/api/cardsets', {
+  const { data } = await axios.get('./routes/cardsets', {
     headers: {
       Authorization: `Bearer ${localStorage.getItem('token')}`
     }
@@ -12,7 +12,7 @@ const fetchCardSets = async () => {
 };
 
 const fetchFlashcards = async () => {
-  const { data } = await axios.get('/api/flashcards', {
+  const { data } = await axios.get('./routes/flashcards', {
     headers: {
       Authorization: `Bearer ${localStorage.getItem('token')}`
     }
@@ -21,7 +21,7 @@ const fetchFlashcards = async () => {
 };
 
 const createCardSet = async (newCardSet) => {
-  const { data } = await axios.post('/api/cardsets', newCardSet, {
+  const { data } = await axios.post('./routes/cardsets', newCardSet, {
     headers: {
       Authorization: `Bearer ${localStorage.getItem('token')}`
     }

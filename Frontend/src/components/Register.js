@@ -1,16 +1,28 @@
-import React, { useState, useContext } from 'react';
-import { AuthContext } from '../context/AuthContext';
-// Import custom CSS for Register styling
+import React, { useState } from 'react';
+import { useHistory } from 'react-router-dom';
+import axios from 'axios';
 
 const Register = () => {
+  const [name, setName] = useState('');
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
   const history = useHistory();
 
+  // Define a mock register function
+  const register = async (name, username, password) => {
+    // This is just a mock function, replace with your actual registration logic
+    console.log('Registering user:', name, username, password);
+    // You might want to return a Promise or handle the registration logic here
+  };
+
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      await axios.post('/api/users/register', { username, password });
+      // Call the register function
+      await register(name, username, password);
+      // Assuming you're making a POST request to register the user
+      await axios.post('/api/users/register', { name, username, password });
+      // Redirect to login page after successful registration
       history.push('/login');
     } catch (error) {
       console.error('Registration failed:', error);
@@ -25,8 +37,8 @@ const Register = () => {
           <label>Name:</label>
           <input
             type="text"
-            value={username}
-            onChange={(e) => setUsername(e.target.value)}
+            value={name}
+            onChange={(e) => setName(e.target.value)}
             required
             className="form-control"
           />

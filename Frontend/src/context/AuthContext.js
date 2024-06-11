@@ -1,36 +1,36 @@
-import React, { createContext, useState, useEffect } from 'react';
 import axios from 'axios';
+import React, { createContext, useState } from 'react';
+import { jwtDecode } from 'jwt-decode'; // Correct named import
 
-const AuthContext = createContext();
+export const AuthContext = createContext();
 
-const AuthProvider = ({ children }) => {
+export const AuthProvider = ({ children }) => {
   const [user, setUser] = useState(null);
 
-  useEffect(() => {
-    const token = localStorage.getItem('token');
-    if (token) {
-      axios.get('/api/auth/me', {
-        headers: {
-          Authorization: `Bearer ${token}`
-        }
-      }).then((response) => {
-        setUser(response.data);
-      }).catch((error) => {
-        console.error('Failed to fetch user:', error);
-      });
-    }
-  }, []);
-
   const login = async (username, password) => {
-    const response = await axios.post('/api/auth/login', { username, password });
-    localStorage.setItem('token', response.data.token);
-    setUser(response.data.user);
+    try {
+      const res = await axios.post('/auth/login', { username, password });
+      const { token } = res.data;
+      localStorage.setItem('token', token);
+      // Decode the token to get user info
+      const decoded = jwtDecode(token); // Correct usage
+      setUser(decoded.user);
+    } catch (err) {
+      console.error('Login failed:', err);
+    }
   };
 
-  const register = async (username, password) => {
-    const response = await axios.post('/api/auth/register', { username, password });
-    localStorage.setItem('token', response.data.token);
-    setUser(response.data.user);
+  const register = async (name, username, password) => {
+    try {
+      const res = await axios.post('/auth/register', { name, username, password });
+      const { token } = res.data;
+      localStorage.setItem('token', token);
+      // Decode the token to get user info
+      const decoded = jwtDecode(token); // Correct usage
+      setUser(decoded.user);
+    } catch (err) {
+      console.error('Registration failed:', err);
+    }
   };
 
   const logout = () => {
@@ -44,5 +44,3 @@ const AuthProvider = ({ children }) => {
     </AuthContext.Provider>
   );
 };
-
-export { AuthContext, AuthProvider };

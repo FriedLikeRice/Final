@@ -4,7 +4,7 @@ import axios from 'axios';
 
 const fetchCardSets = async () => {
   try {
-    const { data } = await axios.get('/api/cardsets', {
+    const { data } = await axios.get('./routes/cardsets', {
       headers: {
         Authorization: `Bearer ${localStorage.getItem('token')}`
       }

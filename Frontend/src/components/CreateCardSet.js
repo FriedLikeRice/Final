@@ -3,7 +3,7 @@ import { useMutation, useQueryClient } from 'react-query';
 import axios from 'axios';
 
 const createCardSet = async (newCardSet) => {
-  const { data } = await axios.post('/api/cardsets', newCardSet, {
+  const { data } = await axios.post('./routes/cardsets', newCardSet, {
     headers: {
       Authorization: `Bearer ${localStorage.getItem('token')}`
     }
