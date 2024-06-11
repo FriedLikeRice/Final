@@ -1,4 +1,5 @@
 import React, { useState, useContext } from 'react';
+import { useHistory } from 'react-router-dom'; // Correct import for useHistory
 import { AuthContext } from '../context/AuthContext';
 
 
@@ -6,11 +7,13 @@ const Login = () => {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
   const { login } = useContext(AuthContext);
+  const history = useHistory();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
       await login(username, password);
+      history.push('/');
     } catch (error) {
       console.error('Login failed:', error);
     }
