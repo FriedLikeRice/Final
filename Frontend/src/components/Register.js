@@ -1,12 +1,12 @@
 import React, { useState } from 'react';
-import { useHistory } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 
 const Register = () => {
   const [name, setName] = useState('');
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
-  const history = useHistory();
+  const history = useNavigate();
 
   // Define a mock register function
   const register = async (name, username, password) => {
