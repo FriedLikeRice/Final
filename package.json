@@ -4,7 +4,7 @@
   "description": "MERN stack flashcard app",
   "scripts": {
     "install-all": "npm install --prefix backend && npm install --prefix frontend",
-    "start": "concurrently \"npm run build--prefix backend\" \"npm start --prefix frontend\"",
+    "start": "concurrently \"npm run app.js--prefix backend\" \"npm start --prefix frontend\"",
     "server": "nodemon backend/app.js",
     "client": "npm start --prefix frontend"
   },
